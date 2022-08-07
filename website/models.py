@@ -1,7 +1,9 @@
 from . import db
 
 from flask_login import UserMixin
-from datetime import datetime as dt, timedelta
+from datetime import datetime as dt
+
+from sqlalchemy.sql import func
 
 user_pokemon = db.Table(
     'user_pokemon',
@@ -36,3 +38,7 @@ class Pokemon(db.Model):
     gif = db.Column(db.String)
     
     # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def save(self):
+        db.session.add(self)
+        db.session.commit()

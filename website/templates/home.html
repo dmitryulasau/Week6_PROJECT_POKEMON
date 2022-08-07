@@ -1,4 +1,107 @@
 {% extends "base.html" %} {% block title %} HOME {% endblock %} {% block content
 %}
-<h1>HOME PAGE</h1>
-{% endblock %}
+
+<h1 align="center">Hello, {{ current_user.first_name }}!</h1>
+
+<!-- FIND POKEMON -->
+<form method="POST">
+  <div class="form-group">
+    <label for="pokemon_name">FIND</label>
+    <input
+      type="text"
+      class="form-control"
+      id="pokemon_name"
+      name="pokemon_name"
+      placeholder="Enter POKE name"
+    />
+  </div>
+
+  <br />
+  <div align="center">
+    <button type="submit" class="btn btn-primary">Add Note</button>
+  </div>
+</form>
+
+<!-- DISPLAY POKEMON -->
+{% if info %}
+
+<div class="pokemon-stats">
+  <table class="table">
+    <colgroup span="2"></colgroup>
+    <thead>
+      <tr>
+        <th colspan="2" scope="colgroup" class="thname">
+          {{info[0]['name'].upper()}}
+        </th>
+        <th>
+          <img class="img-pokemon" src="{{info[0]['gif']}}" width="30" />
+        </th>
+      </tr>
+
+      <tr>
+        <th rowspan="5" scope="rowgroup">
+          <div>
+            <img class="img-pokemon" src="{{info[0]['image']}}" width="200" />
+          </div>
+        </th>
+      </tr>
+
+      <tr>
+        <th scope="row">Ability</th>
+        <td>{{info[0]['ability'].upper()}}</td>
+      </tr>
+
+      <tr>
+        <th scope="row">Defense</th>
+        <td>
+          {{info[0]['defense']}}
+          <img
+            width="16px"
+            src="https://res.cloudinary.com/dulasau/image/upload/v1659485587/security_ed7uvc.png"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row">Attack</th>
+        <td>
+          {{info[0]['attack']}}
+          <img
+            width="16px"
+            src="https://res.cloudinary.com/dulasau/image/upload/v1659486213/sword_e5cibf.png"
+          />
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row">HP</th>
+        <td>
+          {{info[0]['hp']}}
+          <img
+            width="16px"
+            src="https://res.cloudinary.com/dulasau/image/upload/v1659583844/heart_obpb3l.png"
+          />
+        </td>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+<form method="POST">
+  <button type="submit" class="ball-catch">
+    <a href="#">
+      <img
+        class="pokeball-catch image"
+        src="https://res.cloudinary.com/dulasau/image/upload/v1659576740/800px-Pokebola-pokeball-png-0_a7hjeg.png"
+        width="100"
+      />
+
+      <div class="pokeball pcontainer">
+        <div class="middle">
+          <div class="text">CATCH!</div>
+        </div>
+      </div>
+    </a>
+  </button>
+</form>
+{% endif %} {% endblock %}
